@@ -1,0 +1,49 @@
+name: a017_urm
+description: Assignments 017 Users record Management Flutter Final Project
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.9.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  ##firebse dependencies
+
+  firebase_core: ^1.17.0
+  cloud_firestore: ^3.1.15
+  firebase_auth: ^3.3.19
+  image_picker: ^0.8.5+3
+  cupertino_icons: ^1.0.2
+  flutter_iconly: ^1.0.2
+
+  intl: ^0.17.0
+
+
+
+
+flutter:
+
+  uses-material-design: true
+
+
+  fonts:
+    - family: Cassandra
+      fonts:
+      - asset: assets/font/Cassandra_Personal_Use_Regular.ttf
+
+    - family: Nolluqa
+      fonts:
+      - asset: assets/font/Nolluqa_Personal_Use_Regular.otf
+
+
+
+
+
+  assets:
+    -  assets/images/app_background.png
+    -  assets/images/app_logo.png
+

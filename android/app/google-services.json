@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "541130030469",
+    "project_id": "a017-urm",
+    "storage_bucket": "a017-urm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541130030469:android:a15e806a2c1f19f29fd8ec",
+        "android_client_info": {
+          "package_name": "com.digikull.flutter.a017urm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "541130030469-mlb8fqaih74t7af5pv0cou1l33m9tvtu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXFjU4_TMFDea1_lgvi4e8Qy1cTeuLjGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "541130030469-mlb8fqaih74t7af5pv0cou1l33m9tvtu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
