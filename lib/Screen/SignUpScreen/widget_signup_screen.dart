@@ -30,30 +30,30 @@ class TopBar extends StatelessWidget {
         ),
       ),
       child: Stack(
-          children: [
-            Container(
-              margin: EdgeInsets.fromLTRB(135, 20, 0, 0),
-              child: Image.asset(
-                "assets/images/app_logo.png",
-                height: 125,
-                width: 125,
+        children: [
+          Container(
+            margin: EdgeInsets.fromLTRB(135, 20, 0, 0),
+            child: Image.asset(
+              "assets/images/app_logo.png",
+              height: 125,
+              width: 125,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 5,
+              vertical: 5,
+            ),
+            alignment: Alignment.bottomRight,
+            child: Text(
+              "Register",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 5,
-                vertical: 5,
-              ),
-              alignment: Alignment.bottomRight,
-              child: Text(
-                "Register",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
+          ),
+        ],
       ),
     );
   }
