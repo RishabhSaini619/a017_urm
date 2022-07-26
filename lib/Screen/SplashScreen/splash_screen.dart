@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:a017_urm/Screen/LoginScreen/login_screen.dart';
 import 'package:a017_urm/Screen/SignUpScreen/signup_screen.dart';
-import 'package:a017_urm/Widget/bottom_Navigator_Bar/bottomNavigatorBar.dart';
+import 'package:a017_urm/Widget/bottom_Navigator_Bar/NavBarScreen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

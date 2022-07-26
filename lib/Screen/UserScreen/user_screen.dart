@@ -1,6 +1,6 @@
 import 'package:a017_urm/Screen/UserScreen/widget_user_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:a017_urm/Widget/bottom_Navigator_Bar/bottomNavigatorBar.dart';
+import 'package:a017_urm/Widget/bottom_Navigator_Bar/NavBarScreen.dart';
 
 class UserScreen extends StatefulWidget {
 
