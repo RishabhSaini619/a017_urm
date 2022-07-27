@@ -86,9 +86,13 @@ class FirstNameField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        textInputAction: TextInputAction.next,
         controller: firstNameController,
         keyboardType: TextInputType.name,
         validator: (value) => valFirstName(value),
+        style: TextStyle(
+          color: Color(0xffF5591F),
+        ),
         cursorColor: Color(0xffF5591F),
         decoration: InputDecoration(
           icon: Icon(
@@ -96,6 +100,7 @@ class FirstNameField extends StatelessWidget {
             color: Color(0xffF5591F),
           ),
           hintText: "First Name",
+          hintStyle: TextStyle(color: Colors.grey),
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
         ),
@@ -131,9 +136,13 @@ class LastNameField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        textInputAction: TextInputAction.next,
         controller: lastNameController,
         keyboardType: TextInputType.name,
         validator: (value) => valLastName(value),
+        style: TextStyle(
+          color: Color(0xffF5591F),
+        ),
         cursorColor: Color(0xffF5591F),
         decoration: InputDecoration(
           icon: Icon(
@@ -141,6 +150,7 @@ class LastNameField extends StatelessWidget {
             color: Color(0xffF5591F),
           ),
           hintText: "Last Name",
+          hintStyle: TextStyle(color: Colors.grey),
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
         ),
@@ -150,6 +160,7 @@ class LastNameField extends StatelessWidget {
 }
 
 class DoBField extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -176,10 +187,16 @@ class DoBField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        textInputAction: TextInputAction.next,
         controller: dateOfBirthController,
         keyboardType: TextInputType.datetime,
         validator: (value) => valDOB(value),
-        onTap: () => handleSelectedDate(context),
+        onTap: () async {
+          return handleSelectedDate(context);
+        },
+        style: TextStyle(
+          color: Color(0xffF5591F),
+        ),
         cursorColor: Color(0xffF5591F),
         decoration: InputDecoration(
           focusColor: Color(0xffF5591F),
@@ -188,6 +205,7 @@ class DoBField extends StatelessWidget {
             color: Color(0xffF5591F),
           ),
           hintText: "DD/MM/YY",
+          hintStyle: TextStyle(color: Colors.grey),
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
         ),
@@ -215,73 +233,73 @@ class _EmailFieldState extends State<EmailField> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.only(
-          left: 20,
-          right: 20,
-          top: 10,
-        ),
-        padding: EdgeInsets.only(
-          left: 20,
-          right: 20,
-        ),
-        height: 50,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: Colors.grey[200],
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, 10),
-              blurRadius: 50,
-              color: Color(0xffEEEEEE),
-            ),
-          ],
-        ),
-        child: TextFormField(
-          controller: emailController,
-          keyboardType: TextInputType.emailAddress,
-          validator: (value) => valEmail(value),
-          cursorColor: Color(0xffF5591F),
-          decoration: InputDecoration(
-            icon: Icon(
-              Icons.email,
-              color: Color(0xffF5591F),
-            ),
-            hintText: "Email & check for availability",
-            enabledBorder: InputBorder.none,
-            focusedBorder: InputBorder.none,
-          ),
-        ),
+    return Container(
+      alignment: Alignment.center,
+      margin: EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 10,
       ),
-      Container(
-        alignment: Alignment.centerRight,
-        margin: EdgeInsets.only(
-          left: 20,
-          right: 20,
-          top: 10,
+      padding: EdgeInsets.only(
+        left: 20,
+        right: 20,
+      ),
+      height: 50,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.grey[200],
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(0, 10),
+            blurRadius: 50,
+            color: Color(0xffEEEEEE),
+          ),
+        ],
+      ),
+      child: TextFormField(
+        textInputAction: TextInputAction.next,
+        controller: emailController,
+        keyboardType: TextInputType.emailAddress,
+        validator: (value) => valEmail(value),
+        style: TextStyle(
+          color: Color(0xffF5591F),
         ),
-        child: IconButton(
-          onPressed: () async {
-            print("Searching email");
-            bool existOrNot = await checkUserId('${emailController.text}');
-            if (existOrNot) {
-            } else
-              getUserDetail('${emailController.text}');
-          },
+        cursorColor: Color(0xffF5591F),
+        decoration: InputDecoration(
           icon: Icon(
-            IconlyLight.search,
-            size: 20,
+            Icons.email,
             color: Color(0xffF5591F),
           ),
+          suffixIcon: IconButton(
+            onPressed: () async {
+              print("Searching email");
+              bool existOrNot = await checkUserId('${emailController.text}');
+              if (existOrNot) {
+              } else
+                getUserDetail('${emailController.text}');
+            },
+            icon: Icon(
+              IconlyLight.search,
+              size: 20,
+              color: Color(0xffF5591F),
+            ),
+          ),
+          hintText: "Email & check for availability",
+          hintStyle: TextStyle(color: Colors.grey),
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
         ),
       ),
-    ]);
+    );
   }
 }
 
-class PasswordField extends StatelessWidget {
+class PasswordField extends StatefulWidget {
+  @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -308,9 +326,17 @@ class PasswordField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        textInputAction: TextInputAction.done,
+        onEditingComplete: () {
+          RegisterButton();
+        },
         controller: passwordController,
         keyboardType: TextInputType.visiblePassword,
         validator: (value) => valPassword(value),
+        obscureText: obscureTextData,
+        style: const TextStyle(
+          color: Color(0xffF5591F),
+        ),
         cursorColor: Color(0xffF5591F),
         decoration: InputDecoration(
           focusColor: Color(0xffF5591F),
@@ -318,7 +344,24 @@ class PasswordField extends StatelessWidget {
             Icons.vpn_key,
             color: Color(0xffF5591F),
           ),
+
+          suffixIcon: IconButton(
+            icon: Icon(
+              obscureTextData ? Icons.visibility:
+              Icons.visibility_off,
+              color: Color(0xffF5591F),
+            ),
+            onPressed:
+             () {
+              setState(
+                    () {
+                  obscureTextData = !obscureTextData;
+                },
+              );
+            },
+          ),
           hintText: "Enter Password",
+          hintStyle: const TextStyle(color: Colors.grey),
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
         ),

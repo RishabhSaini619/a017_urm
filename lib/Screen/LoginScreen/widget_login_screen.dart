@@ -1,4 +1,7 @@
+import 'package:a017_urm/Component/firebase_constants.dart';
+import 'package:a017_urm/Component/global_methods/global_methods.dart';
 import 'package:a017_urm/Component/global_variable.dart';
+import 'package:a017_urm/Screen/LoginScreen/password_reset_screen/password_reset_screen.dart';
 import 'package:a017_urm/Screen/SignUpScreen/signup_screen.dart';
 import 'package:a017_urm/Screen/UserScreen/user_screen.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +34,7 @@ class TopBar extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(135,20, 0, 0),
+            margin: EdgeInsets.fromLTRB(135, 20, 0, 0),
             child: Image.asset(
               "assets/images/app_logo.png",
               height: 125,
@@ -62,6 +65,7 @@ class EmailField extends StatelessWidget {
   const EmailField({Key key}) : super(key: key);
 
   @override
+
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
@@ -87,9 +91,13 @@ class EmailField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        textInputAction: TextInputAction.next,
         controller: emailController,
         keyboardType: TextInputType.emailAddress,
         validator: (value) => valEmail(value),
+        style: const TextStyle(
+          color: Color(0xffF5591F),
+        ),
         cursorColor: Color(0xffF5591F),
         decoration: InputDecoration(
           icon: Icon(
@@ -105,8 +113,15 @@ class EmailField extends StatelessWidget {
   }
 }
 
-class PasswordField extends StatelessWidget {
+class PasswordField extends StatefulWidget {
   @override
+  State<PasswordField> createState() => _PasswordFieldState();
+}
+
+class _PasswordFieldState extends State<PasswordField> {
+  @override
+
+
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
@@ -132,17 +147,41 @@ class PasswordField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        textInputAction: TextInputAction.done,
+        onEditingComplete: () {
+          LogInButton();
+        },
         controller: passwordController,
+        focusNode: passFocusNode,
+        obscureText: obscureTextData,
         keyboardType: TextInputType.visiblePassword,
         validator: (value) => valPassword(value),
         cursorColor: Color(0xffF5591F),
+        style: const TextStyle(
+          color: Color(0xffF5591F),
+        ),
         decoration: InputDecoration(
-          focusColor: Color(0xffF5591F),
           icon: Icon(
             Icons.vpn_key,
             color: Color(0xffF5591F),
           ),
+          suffixIcon: GestureDetector(
+            onTap: () {
+              setState(
+                () {
+                  obscureTextData = !obscureTextData;
+                },
+              );
+            },
+            child: Icon(
+              obscureTextData ? Icons.visibility :
+              Icons.visibility_off,
+              color: Color(0xffF5591F),
+            ),
+          ),
+          focusColor: Color(0xffF5591F),
           hintText: "Enter Password",
+          hintStyle: const TextStyle(color: Colors.grey),
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
         ),
@@ -161,7 +200,15 @@ class ForgetPassword extends StatelessWidget {
       ),
       alignment: Alignment.centerRight,
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ResetPasswordScreen(),
+            ),
+          );
+        },
+
         child: Text(
           "Forget Password?",
         ),
@@ -176,11 +223,6 @@ class LogInButton extends StatefulWidget {
 }
 
 class _LogInButtonState extends State<LogInButton> {
-  CollectionReference userCollection =
-      FirebaseFirestore.instance.collection('User');
-
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-
   @override
   void initState() {
     emailController.text = null;
@@ -192,12 +234,21 @@ class _LogInButtonState extends State<LogInButton> {
     super.initState();
   }
 
-  @override
+  // void dispose() {
+  //    emailController.dispose();
+  //   passwordController.dispose();
+  //   passFocusNode.dispose();
+  //   super.dispose();
+  // }
+
+  bool isLoading = false;
+
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        firebaseAuth.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
+        firebaseAuth.signInWithEmailAndPassword(
+            email: emailController.text,
+            password: passwordController.text);
 
         if (emailController.text == null) {
           errorMessage = "*Enter email";

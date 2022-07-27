@@ -25,6 +25,12 @@ TextEditingController firstNameController = TextEditingController();
 TextEditingController lastNameController = TextEditingController();
 TextEditingController dateOfBirthController = TextEditingController();
 
+//
+final passFocusNode = FocusNode();
+final formKey = GlobalKey<FormState>();
+var obscureTextData = true;
+bool isLoading = true;
+
 //Submit validator
 bool isEverythingCorrect = false;
 
@@ -33,24 +39,33 @@ String errorMessage = "";
 
 bool isDateSelected = false;
 
+//Date of Birt picker
+DateTime selectedDate = DateTime.now();
 Future<Null> handleSelectedDate(BuildContext context) async {
   DateTime pickedDate = await showDatePicker(
-      builder: (context, child) {
-        return Theme(
-          data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(
-              primary: Color(0xffEEEEEE),
-              onSurface: Color(0xffF5591F),
-              onPrimary: Color(0xffF5591F),
-            ),
+    builder: (context, child) {
+      return
+        Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(
+            primary: Color(0xffEEEEEE),
+            onSurface: Color(0xffF5591F),
+            onPrimary: Color(0xffF5591F),
           ),
-          child: Text("Calender"),
-        );
-      },
-      context: context,
-      initialDate: DateTime(2004),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2004));
+        ),
+        child: Text(
+          "Calender",
+          style: TextStyle(
+            color: Color(0xffF5591F),
+          ),
+        ),
+      );
+    },
+    context: context,
+    initialDate: DateTime(2003),
+    firstDate: DateTime(1900),
+    lastDate: DateTime(2004),
+  );
 
   if (pickedDate != null) {
     isDateSelected = true;
@@ -58,9 +73,6 @@ Future<Null> handleSelectedDate(BuildContext context) async {
     dateOfBirthController.text = formattedDate;
   }
 }
-
-//Date of Birt picker
-DateTime selectedDate = DateTime.now();
 
 //First Name Regex
 String valFirstName(String value) {
@@ -98,11 +110,8 @@ String valDOB(String value) {
 
 //Email Regex
 String valEmail(String value) {
-  String pattern =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  RegExp regex = RegExp(pattern);
-  if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-    return 'Enter your email';
+  if (value.isEmpty || !(value.contains("@"))) {
+    return 'Enter valid your email';
   } else {
     return null;
   }
@@ -110,11 +119,8 @@ String valEmail(String value) {
 
 //Password Regex
 String valPassword(String value) {
-  String pattern =
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-  RegExp regex = RegExp(pattern);
-  if (value == null || value.isEmpty || !regex.hasMatch(value)) {
-    return 'Enter your password';
+  if (value.isEmpty || value.length < 8) {
+    return 'Please enter a valid password';
   } else {
     return null;
   }

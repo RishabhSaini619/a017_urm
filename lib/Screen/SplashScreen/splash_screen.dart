@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:a017_urm/Screen/LoginScreen/login_screen.dart';
-import 'package:a017_urm/Screen/SignUpScreen/signup_screen.dart';
 import 'package:a017_urm/Widget/nav_bar_screen/NavBarScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -42,19 +41,22 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
           Center(
-
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
                     "assets/images/app_logo.png",
+                  width: 300,
+                  height: 300,
                 ),
                 Text(
-                  "User\nRecord\nManagement",
+                  "User Record\nManagement",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Nolluqa',
-                    fontSize: 25,
+                    fontSize: 60,
+                    fontWeight: FontWeight.w900,
                     color: Color(0xffF5591F),
                   ),
                 ),
