@@ -43,28 +43,38 @@ bool isDateSelected = false;
 DateTime selectedDate = DateTime.now();
 Future<Null> handleSelectedDate(BuildContext context) async {
   DateTime pickedDate = await showDatePicker(
-    builder: (context, child) {
-      return
-        Theme(
-        data: Theme.of(context).copyWith(
-          colorScheme: ColorScheme.light(
-            primary: Color(0xffEEEEEE),
-            onSurface: Color(0xffF5591F),
-            onPrimary: Color(0xffF5591F),
-          ),
-        ),
-        child: Text(
-          "Calender",
-          style: TextStyle(
-            color: Color(0xffF5591F),
-          ),
-        ),
-      );
-    },
     context: context,
-    initialDate: DateTime(2003),
+    initialDate: DateTime(2004),
     firstDate: DateTime(1900),
     lastDate: DateTime(2004),
+    builder: (context, child) {
+      return Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: ColorScheme.light(
+            primary: Color(0xffF5591F),
+            onPrimary: Color(0xffffffff),
+            surface: Color(0xffffffff),
+            onSurface: Color(0xffF5591F),
+            primaryContainer: Color(0xffF5591F),
+            onPrimaryContainer: Color(0xffffffff),
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              primary: Color(0xffffffff), // color of button's letters
+              backgroundColor: Color(0xffF5591F), // Background color
+              shape: RoundedRectangleBorder(
+                side: const BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
+                    style: BorderStyle.solid),
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+          ),
+        ),
+        child: child,
+      );
+    },
   );
 
   if (pickedDate != null) {

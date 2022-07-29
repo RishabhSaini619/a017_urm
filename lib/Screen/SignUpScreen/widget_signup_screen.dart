@@ -434,6 +434,15 @@ class _RegisterButtonState extends State<RegisterButton> {
                 password: passwordController.text,
               ),
             );
+            print(
+                "User '${firstNameController.text.toUpperCase()} ${lastNameController.text.toUpperCase()}' is added");
+            //cleat text field
+            firstNameController.clear();
+            lastNameController.clear();
+            emailController.clear();
+            dateOfBirthController.clear();
+            passwordController.clear();
+            // switch to user screen
             Navigator.push(
               context,
               MaterialPageRoute(
