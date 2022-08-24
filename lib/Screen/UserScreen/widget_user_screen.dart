@@ -64,115 +64,117 @@ class _UsersDataListState extends State<UsersDataList> {
 
   @override
   void initState() {
+
     getUser();
-    print(usersList);
+    // getUserDetail();
+    print("usersList length is");
+    print(usersList.length);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        alignment: Alignment.topLeft,
-        margin: EdgeInsets.only(left: 25, top: 25, right: 25,),
-        child: isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView.builder(
-                itemCount: usersList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  Map<String, dynamic> userData = usersList[index].data();
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        children: [
-                          //user heading
-                          Container(
-                            height: 100,
-                            width: MediaQuery.of(context).size.width,
-                            color: Color(0xffF5591F),
-                            child: Center(
-                              child: Text(
-                                "${userData[0].firstName} ${userData[0].lastName}",
-                                style: TextStyle(
-                                  color: Color(0xFFFFFFFF),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
+    return Padding(
+      padding: EdgeInsets.only(top: 50),
+      child: isLoading
+          ? Center(
+              child:  CircularProgressIndicator(
+                color: Color(0xffF5591F),
+              ),
+            )
+          : ListView.builder(
+              itemCount: usersList.length,
+              itemBuilder: (BuildContext context, int index) {
+                Map<String, dynamic> userData = usersList[index].data();
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      children: [
+                        //user heading
+                        Container(
+                          height: 100,
+                          width: MediaQuery.of(context).size.width,
+                          color: Color(0xffF5591F),
+                          child: Center(
+                            child: Text(
+                              "${userData[0].FirstName} ${userData[0].LastName}",
+                              style: TextStyle(
+                                color: Color(0xFFFFFFFF),
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                      //user name
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Name: ${userData[0].firstName} ${userData[0].lastName}",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color(0xffF5591F),
-                            letterSpacing: 1.5,
-                            fontWeight: FontWeight.bold,
-                          ),
                         ),
-                      ),
-                      SizedBox(height: 15),
-                      // user Date of Birth
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "DOB: ${userData[0].dateOfBirth}",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Color(0xffF5591F),
-                            letterSpacing: 1.5,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      //user email
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Email: ${userData[0].email}",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Color(0xffF5591F),
-                            letterSpacing: 1.5,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15),
-                      //user password
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Password: ${userData[0].password}",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Color(0xffF5591F),
-                            letterSpacing: 1.5,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Divider(
+                      ],
+                    ),
+                    //user name
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Name: ${userData[0].FirstName} ${userData[0].LastName}",
+                        style: TextStyle(
+                          fontSize: 20,
                           color: Color(0xffF5591F),
-                          thickness: 2,
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  );
-                },
-              ),
-      ),
+                    ),
+                    SizedBox(height: 15),
+                    // user Date of Birth
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "DOB: ${userData[0].DateOfBirth}",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xffF5591F),
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    //user email
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Email: ${userData[0].email}",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xffF5591F),
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    //user password
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "Password: ${userData[0].Password}",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xffF5591F),
+                          letterSpacing: 1.5,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: Divider(
+                        color: Color(0xffF5591F),
+                        thickness: 2,
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
     );
   }
 
@@ -181,17 +183,12 @@ class _UsersDataListState extends State<UsersDataList> {
 
     if (querySnapshot.docs.isNotEmpty) {
       usersList = querySnapshot.docs;
+      print("updated users List length is");
+      print(usersList.length);
     }
     isLoading = false;
     setState(() {});
   }
 
-  Future<void> getUserDetail(String userId) async {
-    DocumentSnapshot documentSnapshot = await userCollection.doc().get();
-    print(documentSnapshot.exists);
-    if (documentSnapshot.exists) {
-      print(documentSnapshot.id);
-      print(documentSnapshot.data);
-    }
-  }
-}
+ }
+

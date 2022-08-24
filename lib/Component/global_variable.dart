@@ -42,11 +42,12 @@ bool isDateSelected = false;
 //Date of Birt picker
 DateTime selectedDate = DateTime.now();
 Future<Null> handleSelectedDate(BuildContext context) async {
+  DateTime now = DateTime.now();
   DateTime pickedDate = await showDatePicker(
     context: context,
-    initialDate: DateTime(2004),
-    firstDate: DateTime(1900),
-    lastDate: DateTime(2004),
+      initialDate: new DateTime(now.year - 18),
+      firstDate: new DateTime(now.year - 100),
+      lastDate: new DateTime(now.year - 18),
     builder: (context, child) {
       return Theme(
         data: Theme.of(context).copyWith(
