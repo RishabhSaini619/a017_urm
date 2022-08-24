@@ -12,14 +12,12 @@ class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            TopBar(),
-            //userList
-            UsersDataList(),
-          ],
-        ),
+      body: Column(
+        children: [
+          TopBar(),
+          //userList
+          UsersDataList(),
+        ],
       ),
       // bottomNavigationBar: NavBarScreen(),
     );
