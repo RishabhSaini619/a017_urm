@@ -1,6 +1,5 @@
 import 'package:a017_urm/Component/global_variable.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
@@ -58,12 +57,17 @@ class UsersDataList extends StatefulWidget {
 }
 
 class _UsersDataListState extends State<UsersDataList> {
-
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection("User");
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  List<DocumentSnapshot> User = [];
+  List<DocumentSnapshot> usersList = [];
+
+  @override
+  void initState() {
+    getUser();
+    print(usersList);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +79,9 @@ class _UsersDataListState extends State<UsersDataList> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              itemCount: User.length,
+              itemCount: usersList.length,
               itemBuilder: (BuildContext context, int index) {
-                Map<String, dynamic> userData = User[index].data();
-
+                Map<String, dynamic> userData = usersList[index].data();
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -175,7 +178,7 @@ class _UsersDataListState extends State<UsersDataList> {
     QuerySnapshot querySnapshot = await userCollection.get();
 
     if (querySnapshot.docs.isNotEmpty) {
-      User = querySnapshot.docs;
+      usersList = querySnapshot.docs;
     }
     isLoading = false;
     setState(() {});

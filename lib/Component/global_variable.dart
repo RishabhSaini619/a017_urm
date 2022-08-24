@@ -29,7 +29,7 @@ TextEditingController dateOfBirthController = TextEditingController();
 final passFocusNode = FocusNode();
 final formKey = GlobalKey<FormState>();
 var obscureTextData = true;
-bool isLoading = true;
+bool isLoading = false;
 
 //Submit validator
 bool isEverythingCorrect = false;
